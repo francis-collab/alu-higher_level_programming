@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Module 4-square
-Defines a Square class with size attribute, validation, and methods to access and update the size.
+Defines a Square class with size attribute, validation, and methods to access
+and update the size.
 """
 
 
