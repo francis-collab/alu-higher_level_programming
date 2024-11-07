@@ -1,14 +1,16 @@
 #!/usr/bin/python3
 """Module 6-rectangle
 Defines a Rectangle class with width and height attributes, methods for area,
-perimeter, string representation, evaluation, instance counting, and deletion detection.
+perimeter, string representation, evaluation, instance counting, and deletion
+detection.
 """
 
 
 class Rectangle:
     """Represents a rectangle."""
 
-    number_of_instances = 0  # Public class attribute to track the number of instances
+    number_of_instances = 0
+    # Public class attribute to track the number of instances
 
     def __init__(self, width=0, height=0):
         """Initializes the rectangle with width and height attributes.
@@ -19,7 +21,7 @@ class Rectangle:
         """
         self.width = width
         self.height = height
-        Rectangle.number_of_instances += 1  # Increment instance counter
+        Rectangle.number_of_instances += 1
 
     @property
     def width(self):
@@ -104,4 +106,4 @@ class Rectangle:
     def __del__(self):
         """Detects instance deletion and prints a message."""
         print("Bye rectangle...")
-        Rectangle.number_of_instances -= 1  # Decrement instance counter
+        Rectangle.number_of_instances -= 1
