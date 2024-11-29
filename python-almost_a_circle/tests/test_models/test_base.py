@@ -2,8 +2,10 @@
 """Test cases for Base class"""
 
 import unittest
+import os
 from models.base import Base
 from models.rectangle import Rectangle
+from models.square import Square
 
 class TestBase(unittest.TestCase):
     """Test the functionality of the Base class"""
@@ -71,6 +73,45 @@ class TestBase(unittest.TestCase):
         Rectangle.save_to_file(None)
         list_objs = Rectangle.load_from_file()
         self.assertEqual(list_objs, [])
+
+    def test_save_to_file_csv(self):
+        """Test saving list of objects to a CSV file"""
+        Rectangle.save_to_file_csv(None)
+        with open("Rectangle.csv", "r") as f:
+            self.assertEqual(f.read(), "")
+
+        r1 = Rectangle(1, 2)
+        r2 = Rectangle(2, 3)
+        Rectangle.save_to_file_csv([r1, r2])
+        with open("Rectangle.csv", "r") as f:
+            content = f.read()
+            self.assertIn("1,1,2,0,0", content)
+            self.assertIn("2,2,3,0,0", content)
+
+    def test_load_from_file_csv(self):
+        """Test loading list of instances from a CSV file"""
+        r1 = Rectangle(1, 2)
+        r2 = Rectangle(2, 3)
+        Rectangle.save_to_file_csv([r1, r2])
+        list_objs = Rectangle.load_from_file_csv()
+        self.assertEqual(len(list_objs), 2)
+        self.assertEqual(list_objs[0].id, 1)
+        self.assertEqual(list_objs[0].width, 1)
+        self.assertEqual(list_objs[0].height, 2)
+        self.assertEqual(list_objs[1].id, 2)
+        self.assertEqual(list_objs[1].width, 2)
+        self.assertEqual(list_objs[1].height, 3)
+
+    def tearDown(self):
+        """Clean up any created files after each test"""
+        try:
+            os.remove("Rectangle.json")
+        except FileNotFoundError:
+            pass
+        try:
+            os.remove("Rectangle.csv")
+        except FileNotFoundError:
+            pass
 
 if __name__ == '__main__':
     unittest.main()
