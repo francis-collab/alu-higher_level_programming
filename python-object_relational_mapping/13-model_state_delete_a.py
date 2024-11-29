@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-Deletes all State objects with a name containing the letter 'a' from the database hbtn_0e_6_usa
+Deletes all State objects with a name containing the letter 'a' from the
+database hbtn_0e_6_usa.
 """
 from sys import argv
 from sqlalchemy import create_engine
@@ -18,7 +19,9 @@ if __name__ == "__main__":
     session = Session()
 
     # Delete states containing 'a'
-    states_to_delete = session.query(State).filter(State.name.like('%a%')).all()
+    states_to_delete = session.query(State).filter(
+        State.name.like('%a%')
+    ).all()
     for state in states_to_delete:
         session.delete(state)
     session.commit()
