@@ -18,8 +18,11 @@ if __name__ == "__main__":
     # Create a cursor object to interact with the database
     cur = db.cursor()
 
-    # Create the query using the user input
-    query = "SELECT * FROM states WHERE name = '{}' ORDER BY id ASC".format(sys.argv[4])
+    # Create the query using the user input, ensuring case sensitivity
+    query = (
+        "SELECT * FROM states WHERE BINARY name = '{}' ORDER BY id ASC"
+        .format(sys.argv[4])
+    )
 
     # Execute the query
     cur.execute(query)
