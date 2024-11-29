@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-Displays all values in the states table of hbtn_0e_0_usa where name matches the argument, safe from SQL injections
+Displays all values in the states table of hbtn_0e_0_usa where
+name matches the argument, safe from SQL injections.
 """
 import MySQLdb
 import sys
@@ -19,7 +20,10 @@ if __name__ == "__main__":
     cur = db.cursor()
 
     # Execute the query, using parameterized queries to avoid SQL injection
-    cur.execute("SELECT * FROM states WHERE name = %s ORDER BY id ASC", (sys.argv[4],))
+    cur.execute(
+        "SELECT * FROM states WHERE BINARY name = %s ORDER BY id ASC",
+        (sys.argv[4],)
+    )
 
     # Fetch all the rows
     rows = cur.fetchall()
