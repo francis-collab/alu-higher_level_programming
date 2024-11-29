@@ -19,7 +19,9 @@ if __name__ == "__main__":
     cur = db.cursor()
 
     # Execute the query, ensuring only uppercase N is considered
-    cur.execute("SELECT * FROM states WHERE BINARY name LIKE 'N%' ORDER BY id ASC")
+    cur.execute(
+        "SELECT * FROM states WHERE BINARY name LIKE 'N%' ORDER BY id ASC"
+    )
 
     # Fetch all the rows
     rows = cur.fetchall()
