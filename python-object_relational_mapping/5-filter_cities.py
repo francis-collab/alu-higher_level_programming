@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-Lists all cities of a state given as an argument from the database hbtn_0e_4_usa
+Lists all cities of a state given as an argument from the database
+hbtn_0e_4_usa.
 """
 import MySQLdb
 import sys
