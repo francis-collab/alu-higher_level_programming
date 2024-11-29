@@ -20,9 +20,9 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    # Delete states containing 'a'
+    # Delete states containing 'a', case insensitive
     states_to_delete = session.query(State).filter(
-        State.name.like('%a%')
+        State.name.ilike('%a%')
     ).all()
     for state in states_to_delete:
         session.delete(state)
