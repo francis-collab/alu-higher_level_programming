@@ -17,5 +17,7 @@ request(url, (error, response, body) => {
       }
     }
     console.log(completedTasks);
+  } else {
+    console.log(error);
   }
 });
